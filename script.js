@@ -16,8 +16,29 @@ async function getData(action){
 function setupMenu(){
   const btn=$('#menuButton'), nav=$('#navMenu');
   if(!btn || !nav) return;
-  btn.addEventListener('click',()=>nav.classList.toggle('open'));
-  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+  let overlay=$('.nav-overlay');
+  if(!overlay){
+    overlay=document.createElement('div');
+    overlay.className='nav-overlay';
+    overlay.setAttribute('aria-hidden','true');
+    document.body.appendChild(overlay);
+  }
+
+  const setMenu=(open)=>{
+    nav.classList.toggle('open',open);
+    overlay.classList.toggle('show',open);
+    document.body.classList.toggle('menu-open',open);
+    btn.setAttribute('aria-expanded',String(open));
+    btn.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+    btn.textContent=open?'×':'☰';
+  };
+
+  btn.setAttribute('aria-expanded','false');
+  btn.addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
+  overlay.addEventListener('click',()=>setMenu(false));
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+  document.addEventListener('keydown',(e)=>{if(e.key==='Escape')setMenu(false);});
 }
 
 function setActiveNav(){
