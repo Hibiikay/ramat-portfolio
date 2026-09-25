@@ -5,7 +5,7 @@ nav{display:flex;position:fixed;top:0;right:0;bottom:0;left:auto;width:min(78vw,
 nav.open{transform:translateX(0);}
 nav a{width:100%;padding:13px 14px;border-radius:10px;font-size:1rem;}
 nav a:hover,nav a.active{background:#f1f6f3;color:var(--green);}
-.nav-overlay{position:fixed;inset:0;background:rgba(10,25,18,.45);opacity:0;visibility:hidden;transition:opacity .28s ease,visibility .28s ease;z-index:210;}
+.nav-overlay{position:fixed;inset:0;background:rgba(10,25,18,.45);opacity:0;visibility:hidden;transition:opacity .28s ease,visibility .28s ease;z-index:190;}
 .nav-overlay.show{opacity:1;visibility:visible;}
 body.menu-open{overflow:hidden;}
 .section{padding:65px 5%}.hero{min-height:auto;padding-top:55px}.hero h1{font-size:2.7rem}.hero-profile img{width:280px;height:360px}.projects-grid,.skills-grid,.about-highlights{grid-template-columns:1fr}.contact-card{padding:32px 22px}
